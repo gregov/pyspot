@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load url from future %}
+
+
+{% block title %}Règles de ce point d'accès{% endblock %}
+
+
+{% block content %}
+{% if not sent %}
+Cet accès internet vous est offert par {% block hotspot %}HOTSPOT{% endblock %}<br />
+
+Pour pouvoir accéder à Internet, vous devez vous inscrire en remplissant les champs suivants.<br />
+Nous allons vous envoyer un email qui contiendra un lien d'activation.<br />
+
+<form method="post">
+{% csrf_token %}
+<div class="span11"><ul>{{ form.as_ul }}</ul></div>
+<div class="span1"><input class="btn btn-primary" type="submit" value="Envoyez-moi l'e-mail" /></div>
+</form>
+{% else %}
+    L'email vous a été envoyé.
+{% endif %}
+{% endblock %}
